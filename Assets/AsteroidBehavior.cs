@@ -19,7 +19,7 @@ public class AsteroidBehavior : MonoBehaviour
         GameObject spawnedFX = null;
         if (collision.CompareTag("Laser"))
         {
-            spawnedFX = Instantiate(asteroidFX);
+            spawnedFX = Instantiate(asteroidFX,transform.position, Quaternion.identity); //dictating how the asteroid spawns when destroyed, i.e, position
             Destroy(gameObject);
         }
         if (collision.CompareTag("AsteroidDestroyer"))

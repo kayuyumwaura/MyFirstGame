@@ -12,6 +12,8 @@ public class shipMovement : MonoBehaviour
 
     public float speed;
 
+    public GameManager gameManager;
+
     //private void Awake()
     //{
     //    Debug.Log("InAwake");
@@ -26,6 +28,7 @@ public class shipMovement : MonoBehaviour
     void Start()
     {
         Debug.Log("InStart");
+        gameManager.del1 += HandleDelegate;  //subscribe to the H pressed event in game manager
         
     }
 
@@ -99,4 +102,10 @@ public class shipMovement : MonoBehaviour
     //{
     //    Debug.Log("InDestroy");
     //}
+
+
+    private void HandleDelegate()
+    {
+        Debug.Log("Player Ship Handled by Game Manager");
+    }
 }

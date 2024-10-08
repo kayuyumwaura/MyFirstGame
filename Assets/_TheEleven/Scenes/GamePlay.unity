@@ -214,6 +214,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &764919719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764919721}
+  - component: {fileID: 764919720}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &764919720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764919719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6de7ff6680a4b4397d1f46bb7faa76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &764919721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764919719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7001183, y: 3.5030708, z: -0.02388282}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &923541291
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +268,8 @@ GameObject:
   m_Component:
   - component: {fileID: 923541293}
   - component: {fileID: 923541292}
+  - component: {fileID: 923541294}
+  - component: {fileID: 923541295}
   m_Layer: 0
   m_Name: Earth
   m_TagString: Untagged
@@ -298,6 +344,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &923541294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923541291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e756faecf5811db4a98de20c17e0c923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 764919720}
+--- !u!58 &923541295
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923541291}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1717891856
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,12 +513,16 @@ PrefabInstance:
       value: AsteroidDestroyer
       objectReference: {fileID: 0}
     - target: {fileID: 6753152223391092200, guid: 3d7ec5c5121881e43bee42824b7e4145, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 35.802994
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753152223391092200, guid: 3d7ec5c5121881e43bee42824b7e4145, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0107
+      value: -0.0285
       objectReference: {fileID: 0}
     - target: {fileID: 6753152223391092200, guid: 3d7ec5c5121881e43bee42824b7e4145, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.59
+      value: -10.5
       objectReference: {fileID: 0}
     - target: {fileID: 6753152223391092200, guid: 3d7ec5c5121881e43bee42824b7e4145, type: 3}
       propertyPath: m_LocalPosition.z
@@ -517,8 +615,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7266448407732648235, guid: 56f46a499b7eeb8429a86b3ef6f56cf2, type: 3}
       propertyPath: speed
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7266448407732648235, guid: 56f46a499b7eeb8429a86b3ef6f56cf2, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 764919720}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -534,3 +636,4 @@ SceneRoots:
   - {fileID: 3128854060998682370}
   - {fileID: 1717891858}
   - {fileID: 923541293}
+  - {fileID: 764919721}
