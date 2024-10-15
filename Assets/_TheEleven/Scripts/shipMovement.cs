@@ -24,13 +24,6 @@ public class shipMovement : MonoBehaviour
     //}
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("InStart");
-        gameManager.del1 += HandleDelegate;  //subscribe to the H pressed event in game manager
-        
-    }
 
     // Update is called once per frame
     void Update()

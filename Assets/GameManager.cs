@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
-public delegate void DoSomethingDelegate();
+//public delegate void DoSomethingDelegate(Color color);
+//public event DoSomethingDelegate OnEarthDeath;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,21 +17,26 @@ public class GameManager : MonoBehaviour
     ///
     ///
 
-    
-    public DoSomethingDelegate del1;
+    //this is a delegate wrapped in an event - making it immutable, and perfect for publishing and subscribing. see delegate method above
+   
+    public UnityEvent<Color> OnEarthDeath;
 
     private void Start()
     {
        
     }
 
-    private void Update()
+
+    /// <summary>
+    /// called by earth health when earth health is zero
+    /// </summary>
+    internal void NotifyEarthDeath()
     {
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            del1();
-        }
+        OnEarthDeath.Invoke(Color.red);
+        
     }
+
+
 
 
 

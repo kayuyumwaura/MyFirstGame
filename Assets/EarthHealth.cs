@@ -5,9 +5,10 @@ using UnityEngine;
 public class EarthHealth : MonoBehaviour
 {
 
-    private const int MaxHealth = 100;
+    private const int MaxHealth = 5;
     private int currentHealth;
     public GameManager gameManager;
+    public SpriteRenderer spriteRenderer;
 
     private void HandleDelegate()
     {
@@ -18,7 +19,10 @@ public class EarthHealth : MonoBehaviour
     public int CurrentHealth { get { return currentHealth; }  private set { 
             currentHealth = value;
 
-            Debug.Log("Manager has set my health to " + currentHealth);
+            if (currentHealth <= 0)
+            {
+                gameManager.NotifyEarthDeath(); 
+            }
         } }
 
     ////a broken down version of the property CurrentHealth
@@ -36,18 +40,27 @@ public class EarthHealth : MonoBehaviour
     {
         if (collision.CompareTag("Asteroid"))
         {
-            CurrentHealth -= 10;
+            CurrentHealth -= 1;
             //Debug.Log("Earth Hit");
         }
     }
 
+  
+
     private void Start()
     {
-        gameManager.del1 = new DoSomethingDelegate(HandleDelegate);
+        CurrentHealth = MaxHealth;
+
+        //gameManager.del1 = new DoSomethingDelegate(HandleDelegate);
     }
 
     void Update()
     {
         
+    }
+
+    public void HandleEarthDeath(Color color)
+    {
+        spriteRenderer.color = color;
     }
 }
