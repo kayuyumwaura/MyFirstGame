@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EarthHealth : MonoBehaviour
 {
 
-    private const int MaxHealth = 5;
-    private int currentHealth;
+    private const float MaxHealth = 5f;
+    private float currentHealth;
     public GameManager gameManager;
     public SpriteRenderer spriteRenderer;
+    public Image healthBar;
 
     private void HandleDelegate()
     {
@@ -16,8 +18,9 @@ public class EarthHealth : MonoBehaviour
     }
 
     //this is a property of currentHealth that protects(controlled access) of currentHealth
-    public int CurrentHealth { get { return currentHealth; }  private set { 
+    public float CurrentHealth { get { return currentHealth; }  private set { 
             currentHealth = value;
+            healthBar.fillAmount = currentHealth / MaxHealth;
 
             if (currentHealth <= 0)
             {
@@ -50,6 +53,7 @@ public class EarthHealth : MonoBehaviour
     private void Start()
     {
         CurrentHealth = MaxHealth;
+        healthBar.fillAmount = 1f;
 
         //gameManager.del1 = new DoSomethingDelegate(HandleDelegate);
     }
