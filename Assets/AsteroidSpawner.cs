@@ -9,7 +9,7 @@ using UnityEngine;
 public class AsteroidSpawner : MonoBehaviour
 {
     public GameObject asteroid;
-    public float maxSpawnRate = 1.0f;
+    public float maxSpawnRate = 3.0f;
     public float minSpawnRate = 1.0f;
     const float left = -9.0f;
     const float right = 8.86f;
@@ -18,9 +18,31 @@ public class AsteroidSpawner : MonoBehaviour
     public float startTime = 0f;
     public float height = 9.0f;
 
+    private float currentSpawnRate;
+
     private void Start()
     {
-        InvokeRepeating(nameof(PositionSpawnedAsteroid), startTime, timer);
+
+        InvokeRepeating(nameof(SpawnAsteroidWave), startTime, timer);
+        currentSpawnRate = maxSpawnRate;
+    }
+
+    private void SpawnAsteroidWave()
+    {
+        StopAllCoroutines();
+        StartCoroutine(SpawnCoRoutine());
+
+    }
+
+    private IEnumerator SpawnCoRoutine()
+    {
+        while (true)
+        {
+            currentSpawnRate = Random.Range(minSpawnRate, maxSpawnRate);
+            PositionSpawnedAsteroid();
+            yield return new WaitForSeconds(currentSpawnRate);
+        }
+
     }
 
     private void PositionSpawnedAsteroid()
