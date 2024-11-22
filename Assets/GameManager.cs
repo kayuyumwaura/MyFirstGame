@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
    
     public UnityEvent<Color> OnEarthDeath;
     public UnityEvent<int> OnScoreUpdate;
+    public UnityEvent OnGameOver;
     private int CurrentScore;
     public static GameManager instance;
+    private int HighScore;
 
 
     private void Start()
@@ -35,6 +37,18 @@ public class GameManager : MonoBehaviour
     {
         CurrentScore += 10;
         OnScoreUpdate?.Invoke(CurrentScore);
+
+        if(PlayerPrefs.HasKey("high score") == false)
+        {
+            PlayerPrefs.SetInt("high score", CurrentScore); 
+        }
+
+        if(PlayerPrefs.GetInt("high score") < CurrentScore)
+        {
+            PlayerPrefs.SetInt("high score", CurrentScore);
+        }
+
+        Debug.Log(PlayerPrefs.GetInt("high score"));
     }
 
     /// <summary>
@@ -43,11 +57,16 @@ public class GameManager : MonoBehaviour
     internal void NotifyEarthDeath()
     {
         OnEarthDeath.Invoke(Color.red);
-        SceneManager.LoadScene("GamePlay");
+        OnGameOver?.Invoke();
     }
 
+    internal void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
-
-
-
+    internal void QuitGame()
+    {
+        Application.Quit();
+    }
 }
