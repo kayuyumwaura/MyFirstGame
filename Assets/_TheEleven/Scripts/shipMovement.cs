@@ -12,6 +12,8 @@ public class shipMovement : MonoBehaviour
 
     public float speed;
 
+    public GameManager gameManager;
+
     //private void Awake()
     //{
     //    Debug.Log("InAwake");
@@ -22,12 +24,6 @@ public class shipMovement : MonoBehaviour
     //}
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("InStart");
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -99,4 +95,10 @@ public class shipMovement : MonoBehaviour
     //{
     //    Debug.Log("InDestroy");
     //}
+
+
+    private void HandleDelegate()
+    {
+        Debug.Log("Player Ship Handled by Game Manager");
+    }
 }
