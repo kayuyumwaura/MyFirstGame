@@ -8,6 +8,7 @@ TagManager:
   - Laser
   - AsteroidDestroyer
   - Asteroid
+  - Earth
   layers:
   - Default
   - TransparentFX
